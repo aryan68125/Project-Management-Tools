@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--TODO (Step 3: Design the My Profile Screen view.)-->
+<!--START-->
+<!--All the constant values are added in their folders and files :
+       1. Drawable values are added in the drawable folders.
+       2. String values in the strings.xml file.
+       3. Dimen values in the dimens.xml file.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.MyProfileActivity"
+    android:background="@drawable/my_profile_bg">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_my_profile_activity"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="My Profile"
+            android:textColor="#DFF6FF"
+            android:textSize="@dimen/_20sdp"
+            android:textStyle="bold" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <!--This layout is just used for applying a background image to the screen below the toolbar.-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_13sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_13sdp"
+            android:elevation="@dimen/_13sdp"
+            app:cardCornerRadius="@dimen/_13sdp"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="@dimen/_16sdp"
+                android:background="#E109203F">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/iv_user_image_my_profile_activity"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="@dimen/_100sdp"
+                    android:contentDescription="@string/image_contentDescription"
+                    android:src="@drawable/ic_user_place_holder" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_25sdp"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/et_name_my_profile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/name"
+                        android:textSize="@dimen/_16sdp"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/white"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:textColor="#F24C4C"
+                    android:textColorHint="#F24C4C">
+
+                    <!--TODO (Step 4: Here we make the email EditText as focusable false. As it should not be editable.)-->
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/et_email_my_profile_activity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:hint="@string/email"
+                        android:inputType="textEmailAddress"
+                        android:textSize="@dimen/_16sdp"
+                        android:textColor="#F24C4C"
+                        android:textColorHint="#F24C4C"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/et_mobile_my_profile_activity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/mobile"
+                        android:inputType="phone"
+                        android:textSize="@dimen/_16sdp"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/white"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                    android:id="@+id/btn_update_my_profile_activity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:background="@drawable/update_button_bg"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:gravity="center"
+                    android:paddingTop="@dimen/_8sdp"
+                    android:paddingBottom="@dimen/_8sdp"
+                    android:text="@string/update"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/_18sdp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+</LinearLayout><!--END-->

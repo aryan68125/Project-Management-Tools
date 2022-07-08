@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--TODO (Step 3: Here we created the app_bar_main.xml file and added the toolbar for MainActivity and includes the content_main file which we have created earlier.)-->
+<!--START-->
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@drawable/main_activity_bg"
+    android:id="@+id/app_bar_main">
+
+<!--    <com.google.android.material.appbar.AppBarLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:theme="@style/AppTheme.AppBarOverlay"-->
+<!--        >-->
+
+<!--        <androidx.appcompat.widget.Toolbar-->
+<!--            android:id="@+id/toolbar_main_activity"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="?attr/actionBarSize"-->
+<!--            app:popupTheme="@style/AppTheme.PopupOverlay"-->
+<!--            android:background="#000000"/>-->
+
+<!--    </com.google.android.material.appbar.AppBarLayout>-->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_main_activity"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="@string/project_management_tool"
+            android:textColor="#B2BEB5"
+            android:textSize="@dimen/_18sdp"
+            android:textStyle="bold" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <include layout="@layout/content_main" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_create_board_app_bar_main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="@dimen/_18sdp"
+        android:layout_marginBottom="@dimen/_18sdp"
+        android:src="@drawable/ic_add_board"
+        android:backgroundTint="#6E85B7"
+        android:tint="#C4D7E0"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

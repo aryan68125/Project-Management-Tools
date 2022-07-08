@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- (Step 4: Design a recycler view item for Boards Listing.)-->
+<!--START-->
+<!--Here all the constants are added in their respective folders and files. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/_10sdp"
+    android:background="?attr/selectableItemBackground"
+    android:backgroundTint="@color/black"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/_10sdp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_board_image"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_60sdp"
+            android:contentDescription="@string/image_contentDescription"
+            android:src="@drawable/ic_board_place_holder"
+            app:civ_border_color="#2C3639"
+            app:civ_border_width="0.5dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#B2BEB5"
+                android:textSize="@dimen/_18sdp"
+                tools:text="Board Name" />
+
+            <TextView
+                android:id="@+id/tv_created_by"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#A5BECC"
+                android:textSize="@dimen/_14sdp"
+                tools:text="Created By" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:background="#354259" />
+
+</LinearLayout>
+    <!--END-->

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <!--This will allow us to give shapes to our buttons-->
+        <shape android:shape="rectangle">
+            <!--Inside this we will give rounded corners to the rectangle shape of our buttons-->
+            <corners android:radius="@dimen/_1sdp"></corners>
+            <!--now we are going to give our shape a color-->
+            <solid android:color="#63090908"></solid>
+        </shape>
+    </item>
+</selector>

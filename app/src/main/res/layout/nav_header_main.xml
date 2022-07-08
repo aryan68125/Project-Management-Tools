@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--START-->
+<!--Here we have add the drawable details to drawable folders and same
+    the String and Dimen values are added in their respective folders and files.-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_200sdp"
+    android:foreground="@drawable/custom_image_view_tin_layout"
+    android:background="@drawable/nav_header_bg"
+    android:gravity="bottom"
+    android:orientation="vertical"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/iv_nav_user_image"
+        android:layout_width="@dimen/_80sdp"
+        android:layout_height="@dimen/_80sdp"
+        android:layout_marginStart="@dimen/_16sdp"
+        android:layout_marginEnd="@dimen/_16sdp"
+        app:civ_border_color="@android:color/white"
+        app:civ_border_width="@dimen/_1sdp"
+        android:contentDescription="@string/image_contentDescription"
+        android:src="@drawable/ic_user_place_holder" />
+
+    <TextView
+        android:id="@+id/tv_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginEnd="@dimen/_16sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/_18sdp"
+        tools:text="Username" />
+
+    <!--This View below is creating a little divider-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:background="#90C8AC" />
+</LinearLayout>
