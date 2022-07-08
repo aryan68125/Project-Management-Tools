@@ -8,20 +8,18 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.projectmanagementtool.R
 import com.example.projectmanagementtool.models.Task
 
 open class TaskListItemsAdapter(private val context: Context, private var list : ArrayList<Task>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.item_task,parent,false)
-        //set the linear layout as the layout parameters
+        val view = LayoutInflater.from(context).inflate(com.example.projectmanagementtool.R.layout.item_task, parent,false)
+        // Here the layout params are converted dynamically according to the screen size as width is 70% and height is wrap_content.
         val layoutParams = LinearLayout.LayoutParams(
-            (parent.width * 0.7).toInt(), LinearLayout.LayoutParams.WRAP_CONTENT
+            (parent.width * 0.7).toInt(),
+            LinearLayout.LayoutParams.WRAP_CONTENT
         )
         // Here the dynamic margins are applied to the view.
-        layoutParams.setMargins(
-            (15.toDp()).toPx(), 0, (40.toDp()).toPx(), 0
-        )
+        layoutParams.setMargins((15.toDp()).toPx(), 0, (40.toDp()).toPx(), 0)
         view.layoutParams = layoutParams
 
         return MyViewHolder(view)
@@ -34,11 +32,11 @@ open class TaskListItemsAdapter(private val context: Context, private var list :
 
                 if (position == list.size - 1) { //if there is no task in the list then show add task list button
                     holder.itemView.findViewById<TextView>(com.example.projectmanagementtool.R.id.tv_add_task_list).setVisibility(View.VISIBLE);
-                    holder.itemView.findViewById<TextView>(com.example.projectmanagementtool.R.id.ll_task_item).setVisibility(View.GONE);
+                    holder.itemView.findViewById<LinearLayout>(com.example.projectmanagementtool.R.id.ll_task_item).setVisibility(View.GONE);
                 }
                 else {  //if there is a task in the list then hide the add task button
                     holder.itemView.findViewById<TextView>(com.example.projectmanagementtool.R.id.tv_add_task_list).setVisibility(View.GONE)
-                    holder.itemView.findViewById<TextView>(com.example.projectmanagementtool.R.id.ll_task_item).setVisibility(View.VISIBLE)
+                    holder.itemView.findViewById<LinearLayout>(com.example.projectmanagementtool.R.id.ll_task_item).setVisibility(View.VISIBLE)
                 }
             }
         }

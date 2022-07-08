@@ -7,10 +7,14 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.projectmanagementtool.BaseActivity
 import com.example.projectmanagementtool.FireBase.FireStoreClass
 import com.example.projectmanagementtool.R
+import com.example.projectmanagementtool.adapters.TaskListItemsAdapter
 import com.example.projectmanagementtool.models.Board
+import com.example.projectmanagementtool.models.Task
 import com.example.projectmanagementtool.utils.Constants
 
 class TaskListActivity : BaseActivity() {
@@ -56,7 +60,7 @@ class TaskListActivity : BaseActivity() {
         }
 
         //Now use the FireStoreClass() to get the board details by using document ID
-        FireStoreClass().getBoardDetails(this,boardDocumentID)
+        FireStoreClass().getBoardDetails(this@TaskListActivity,boardDocumentID)
     }
 
     fun boardDetails(board : Board){
@@ -72,5 +76,14 @@ class TaskListActivity : BaseActivity() {
        catch (e: Exception) {
            // handler
        }
+
+        val addTaskList = Task(resources.getString(R.string.add_list))
+        board.taskList.add(addTaskList)
+        //get the recyclerVew
+        var rv_task_list = findViewById<RecyclerView>(R.id.rv_task_list)
+        rv_task_list.layoutManager = LinearLayoutManager(this@TaskListActivity, LinearLayoutManager.HORIZONTAL,false)
+        rv_task_list.setHasFixedSize(true)
+        val adapter = TaskListItemsAdapter(this@TaskListActivity,board.taskList)
+        rv_task_list.adapter = adapter
     }
 }

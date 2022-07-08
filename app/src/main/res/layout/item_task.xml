@@ -12,6 +12,7 @@
     android:backgroundTint="#000000">
 
     <LinearLayout
+        android:id="@+id/linear_layout_item_task"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -20,12 +21,12 @@
             android:id="@+id/tv_add_task_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#444444"
+            android:background="#001F3F"
             android:foreground="?attr/selectableItemBackground"
             android:gravity="center"
             android:padding="@dimen/_12sdp"
             android:text="@string/action_add_list"
-            android:textColor="#346751"
+            android:textColor="#3A9188"
             android:textStyle="bold"
             android:textSize="@dimen/_18sdp"
             android:visibility="gone"
