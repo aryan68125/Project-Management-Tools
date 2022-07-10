@@ -15,18 +15,19 @@
         android:id="@+id/linear_layout_item_task"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@drawable/linear_layout_item_task_bg">
 
         <TextView
             android:id="@+id/tv_add_task_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#001F3F"
+            android:background="@drawable/tv_add_task_list_item_task_bg"
             android:foreground="?attr/selectableItemBackground"
             android:gravity="center"
             android:padding="@dimen/_12sdp"
             android:text="@string/action_add_list"
-            android:textColor="#3A9188"
+            android:textColor="#1E5128"
             android:textStyle="bold"
             android:textSize="@dimen/_18sdp"
             android:visibility="gone"
@@ -41,13 +42,16 @@
             android:visibility="gone"
             app:cardCornerRadius="@dimen/_5sdp"
             tools:visibility="visible"
-            android:backgroundTint="#1B2430">
+            android:background="@color/common_google_signin_btn_tint"
+            >
 
             <LinearLayout
+                android:id="@+id/list_name_linear_layout_item_task"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:background="@drawable/list_name_linear_layout_item_task_bg">
 
                 <ImageButton
                     android:id="@+id/ib_close_list_name"
@@ -86,7 +90,7 @@
             android:id="@+id/ll_task_item"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#191A19"
+            android:background="@color/common_google_signin_btn_tint"
             android:gravity="center_vertical"
             android:orientation="vertical"
             android:visibility="gone"
@@ -96,7 +100,7 @@
                 android:id="@+id/ll_title_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#261C2C"
+                android:background="@drawable/ll_title_view_item_task_bg"
                 android:elevation="@dimen/_10sdp"
                 android:gravity="center"
                 android:orientation="horizontal"
@@ -148,13 +152,15 @@
                 android:visibility="gone"
                 app:cardCornerRadius="@dimen/_5sdp"
                 tools:visibility="visible"
-                android:backgroundTint="#4A3F35">
+                android:background="@color/common_google_signin_btn_tint">
 
                 <LinearLayout
+                    android:id="@+id/edit_task_list_linear_layout_item_task"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:background="@drawable/edit_task_list_linear_layout_item_task_bg">
 
                     <ImageButton
                         android:id="@+id/ib_close_editable_view"
@@ -193,7 +199,8 @@
                 android:id="@+id/rv_card_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_5sdp" />
+                android:layout_margin="@dimen/_5sdp"
+                />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cv_add_card"
@@ -204,14 +211,16 @@
                 android:visibility="gone"
                 app:cardCornerRadius="@dimen/_5sdp"
                 tools:visibility="visible"
-                android:backgroundTint="#3C4F65"
+                android:background="@color/common_google_signin_btn_tint"
                 >
 
                 <LinearLayout
+                    android:id="@+id/cv_add_card_linear_layout_item_task"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:background="@drawable/cv_add_card_linear_layout_item_task_bg">
 
                     <ImageButton
                         android:id="@+id/ib_close_card_name"
@@ -250,13 +259,13 @@
                 android:id="@+id/tv_add_card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#222831"
+                android:background="@drawable/tv_add_card_item_view_bg"
                 android:elevation="@dimen/_5sdp"
                 android:foreground="?attr/selectableItemBackground"
                 android:gravity="center"
                 android:padding="@dimen/_12sdp"
                 android:text="@string/action_add_card"
-                android:textColor="#616F39"
+                android:textColor="#D8E9A8"
                 android:textSize="@dimen/_18sdp"
                 tools:visibility="visible" />
         </LinearLayout>

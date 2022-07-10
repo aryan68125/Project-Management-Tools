@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--TODO (Step 1: Design an item for the card list.)-->
+<!--START-->
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/_8sdp"
+    android:background="?attr/selectableItemBackground"
+    android:elevation="@dimen/_5sdp"
+    android:orientation="vertical"
+    android:backgroundTint="@color/black">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/card_bg">
+
+        <View
+            android:id="@+id/view_label_color"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_15sdp"
+            android:visibility="gone"
+            tools:background="@color/black" />
+
+        <TextView
+            android:id="@+id/tv_card_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_10sdp"
+            android:textSize="@dimen/_16sdp"
+            tools:text="Card Name"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:id="@+id/tv_members_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:padding="@dimen/_10sdp"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14sdp"
+            android:visibility="gone"
+            tools:text="Members Name" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
+    <!--END-->

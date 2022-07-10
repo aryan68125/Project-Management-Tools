@@ -43,4 +43,20 @@ object Constants{
     //keys in the firebase database related to board details
     const val ASSIGNED_TO : String = "assignedTo"
     const val DOCUMENT_ID : String = "documentId"
+
+    //constants related to task list
+    const val TASK_LIST : String = "taskList"
+
+    //constants for our member activity
+    const val BOARD_DETAIL: String = "board_detail"
+
+    //constants to hold the user ID
+    const val ID : String = "id"
+
+    //constant to hold email address of the members
+    const val EMAIL : String = "email"
+
+    //constant to hold the key
+    const val TASK_LIST_ITEM_POSITION : String = "task_list_item_position"
+    const val CARD_LIST_ITEM_POSITION : String = "card_list_item_position"
 }

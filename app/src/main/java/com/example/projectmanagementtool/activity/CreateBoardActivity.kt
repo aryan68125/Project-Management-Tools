@@ -146,7 +146,8 @@ class CreateBoardActivity : BaseActivity() {
             previously uploaded profile picture of the user will be replaced by the new one instead of uploading a new picture every time
             that will just cost you extra storage if we allow to do that
              */
-            //HERE I WANT THE IMAGE UPLOADED BY THE USER TO HAVE DOCUMENT ID
+            //HERE I WANT THE IMAGE UPLOADED BY THE USER TO HAVE DOCUMENT ID but this will not work because
+            //if i do that images can only be saved after document has been assigned a unique id by the firebase database
             val sRef : StorageReference = FirebaseStorage.getInstance().reference
                 .child("Board_IMAGE"+ System.currentTimeMillis() + "."+ Constants.getFileExtension(this,mselectedImageFileUri))
 

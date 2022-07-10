@@ -10,7 +10,7 @@
         android:id="@+id/gifImageView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:src="@drawable/load_anim_one"
+        android:src="@drawable/load_anim_two"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

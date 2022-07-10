@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">Project Management Tool</string>
+    <string name="app_name">Task Master</string>
     <string name="welcome_text">Welcome!</string>
-    <string name="i_welcome_you_to_my_app_i_hope_that_my_project_management_app_will_help_you_in_your_workflow">I welcome you to my app. I hope that my Project Management App will help you in your workflow</string>
+    <string name="i_welcome_you_to_my_app_i_hope_that_my_project_management_app_will_help_you_in_your_workflow">I welcome you to my app. I hope that my Task Master Project Management App will help you in your workflow</string>
     <string name="image_contentDescription">image</string>
     <string name="let_s_get_started_text">Let\'s Get started</string>
     <string name="intro_text_description">Collaborate and Plan Together Across Multiple Devices on Projemanag’s Minimalist Interface.</string>
@@ -24,7 +24,7 @@
     <!--START-->
     <string name="nav_my_profile">My Profile</string>
     <string name="nav_sign_out">Sign Out</string>
-    <string name="project_management_tool">Project Management Tool</string>
+    <string name="project_management_tool">Task Master</string>
     <string name="mobile">Mobile</string>
     <string name="update">Update</string>
     <!--END-->
@@ -41,4 +41,20 @@
     <string name="action_add_card">Add Card</string>
     <string name="hint_card_name">Card Name</string>
     <string name="add_list">Add List</string>
+
+    <string name="members">Members</string>
+    <string name="add_members">add members</string>
+    <string name="search_member">Search Member</string>
+    <string name="add">Add</string>
+    <string name="cancel">Cancel</string>
+    <string name="add_member">Add Member</string>
+
+    <!--(Step 5: All the string values are added here.)-->
+    <!--START-->
+    <string name="label_color">Label Color</string>
+    <string name="select_color">Select Color</string>
+    <string name="select_members">Select Members</string>
+    <string name="due_date">Due Date</string>
+    <string name="select_due_date">Select Due Date</string>
+    <!--END-->
 </resources>

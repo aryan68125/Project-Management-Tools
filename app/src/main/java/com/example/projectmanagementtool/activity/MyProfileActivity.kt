@@ -53,7 +53,7 @@ class MyProfileActivity : BaseActivity() {
         getSupportActionBar()?.setDisplayHomeAsUpEnabled(true);
         getSupportActionBar()?.setDisplayShowHomeEnabled(true);
         //setting up the Back button on the toolbar of SignUpActivity
-        Toolbar.setNavigationIcon(resources.getDrawable(com.example.projectmanagementtool.R.drawable.ic_white_back))
+        Toolbar.setNavigationIcon(resources.getDrawable(com.example.projectmanagementtool.R.drawable.ic_back_my_profile_activity))
         Toolbar.setNavigationOnClickListener(View.OnClickListener {
             //go back
             onBackPressed()

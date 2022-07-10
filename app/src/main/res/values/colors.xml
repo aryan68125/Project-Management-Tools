@@ -12,4 +12,7 @@
 
     <color name="landingBackgroundCenter">#DC000000</color>
     <color name="landingBackgroundEnd">#F6000000</color>
+
+    <!--dialog box color-->
+    <color name="dialog">#000000</color>
 </resources>
