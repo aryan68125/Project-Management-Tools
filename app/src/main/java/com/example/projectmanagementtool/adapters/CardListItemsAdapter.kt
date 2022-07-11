@@ -1,6 +1,7 @@
 package com.example.projectmanagementtool.adapters
 
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,6 +44,17 @@ open class CardListItemsAdapter(
      */
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val model = list[position]
+
+        if(model.labelColor.isNotEmpty())
+        {
+            var view_label_color =  holder.itemView.findViewById<View>(R.id.view_label_color)
+            view_label_color.visibility = View.VISIBLE
+            view_label_color.setBackgroundColor(Color.parseColor(model.labelColor))
+        }
+        else{
+            var view_label_color =  holder.itemView.findViewById<View>(R.id.view_label_color)
+            view_label_color.visibility = View.GONE
+        }
 
         if (holder is MyViewHolder) {
 

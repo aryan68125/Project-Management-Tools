@@ -59,4 +59,6 @@ object Constants{
     //constant to hold the key
     const val TASK_LIST_ITEM_POSITION : String = "task_list_item_position"
     const val CARD_LIST_ITEM_POSITION : String = "card_list_item_position"
+
+    //TODO create a constant here video number 281
 }

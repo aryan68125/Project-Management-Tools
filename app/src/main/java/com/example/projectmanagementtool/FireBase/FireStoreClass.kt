@@ -4,10 +4,7 @@ import android.app.Activity
 import android.util.Log
 import android.widget.Toast
 import com.example.projectmanagementtool.MainActivity
-import com.example.projectmanagementtool.activity.CreateBoardActivity
-import com.example.projectmanagementtool.activity.MembersActivity
-import com.example.projectmanagementtool.activity.MyProfileActivity
-import com.example.projectmanagementtool.activity.TaskListActivity
+import com.example.projectmanagementtool.activity.*
 import com.example.projectmanagementtool.models.Board
 import com.example.projectmanagementtool.models.User
 import com.example.projectmanagementtool.signup_signin.SignInActivity
@@ -216,7 +213,7 @@ class FireStoreClass {
     }
 
     //function to add or update tasklist to the firebase database
-    fun addUpdateTaskList(activity : TaskListActivity, board : Board){
+    fun addUpdateTaskList(activity : Activity, board : Board){
         //a task list as an array of task
         //create a hashmap or a dictionary of the tasklist because we want to add date created and etc...
         val taskListHashMap = HashMap<String, Any>()
@@ -226,11 +223,21 @@ class FireStoreClass {
         mFireStore.collection(Constants.BOARDS).document(board.documentId).update(taskListHashMap).addOnSuccessListener {
             Log.i(activity.javaClass.simpleName,"TaskList updated successfully")
 
-            //call the function addUpdateTaskListSuccess() in the TaskListActivity class
-            activity.addUpdateTaskListSuccess()
+            if(activity is TaskListActivity)
+            {
+                //call the function addUpdateTaskListSuccess() in the TaskListActivity class
+                activity.addUpdateTaskListSuccess()
+            }
+            else if(activity is CardDetailsActivity){
+                //call the function addUpdateTaskListSuccess() in the CardDetailsActivity class
+                activity.addUpdateTaskListSuccess()
+            }
         }.addOnFailureListener{
             e->
-            activity.hideProgressDialog()
+            if(activity is TaskListActivity)
+            {
+                activity.hideProgressDialog()
+            }
             Log.e(activity.javaClass.simpleName, "Error while updating TaskList",e)
         }
     }
