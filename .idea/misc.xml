@@ -22,6 +22,7 @@
         <entry key="app/src/main/res/drawable/ic_back_member_activity.xml" value="0.2455" />
         <entry key="app/src/main/res/drawable/ic_back_my_profile_activity.xml" value="0.2455" />
         <entry key="app/src/main/res/drawable/ic_delete.xml" value="0.2455" />
+        <entry key="app/src/main/res/drawable/ic_done.xml" value="0.246" />
         <entry key="app/src/main/res/drawable/ic_white_back.xml" value="0.347" />
         <entry key="app/src/main/res/drawable/linear_layout_item_task_bg.xml" value="0.2455" />
         <entry key="app/src/main/res/drawable/list_name_linear_layout_item_task_bg.xml" value="0.2455" />
@@ -54,6 +55,7 @@
         <entry key="app/src/main/res/layout/dialog_search_member.xml" value="0.36041666666666666" />
         <entry key="app/src/main/res/layout/item_board.xml" value="0.36041666666666666" />
         <entry key="app/src/main/res/layout/item_card.xml" value="0.35989583333333336" />
+        <entry key="app/src/main/res/layout/item_card_selected_member.xml" value="0.35989583333333336" />
         <entry key="app/src/main/res/layout/item_label_color.xml" value="0.35989583333333336" />
         <entry key="app/src/main/res/layout/item_member.xml" value="0.36041666666666666" />
         <entry key="app/src/main/res/layout/item_task.xml" value="0.25" />

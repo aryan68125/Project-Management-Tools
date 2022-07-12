@@ -20,7 +20,8 @@ data class User (
         val email: String= "", //This till hold the email of the user
         val image: String = "", //this hold the directory OR Path of the user profile image
         val mobile:Long=0, //this will handle the mobile number of the user
-        val fcmToken:String="" //This will allow us to know that the specific user has logged in
+        val fcmToken:String="", //This will allow us to know that the specific user has logged in
+        var selected : Boolean = false
         ) : Parcelable {
 
         constructor(parcel : Parcel) : this(

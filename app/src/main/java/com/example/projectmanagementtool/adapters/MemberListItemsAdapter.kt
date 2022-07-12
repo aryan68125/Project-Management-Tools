@@ -1,17 +1,25 @@
 package com.example.projectmanagementtool.adapters
 
 import android.content.Context
+import android.opengl.Visibility
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.VISIBLE
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.solver.widgets.ConstraintWidget.VISIBLE
+import androidx.constraintlayout.widget.ConstraintSet.VISIBLE
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.projectmanagementtool.R
 import com.example.projectmanagementtool.models.User
+import com.example.projectmanagementtool.utils.Constants
 import de.hdodenhof.circleimageview.CircleImageView
 
 class MemberListItemsAdapter (private val context: Context,private var list: ArrayList<User>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+    private var onClickListener: OnClickListener? = null
 
     /**
      * Inflates the item views which is designed in xml layout file
@@ -49,6 +57,29 @@ class MemberListItemsAdapter (private val context: Context,private var list: Arr
 
             holder.itemView.findViewById<TextView>(R.id.tv_member_name).text = model.name
             holder.itemView.findViewById<TextView>(R.id.tv_member_email).text = model.email
+
+            if(model.selected){
+                var iv_selected_member_item_member = holder.itemView.findViewById<ImageView>(R.id.iv_selected_member_item_member)
+                iv_selected_member_item_member.visibility = View.VISIBLE
+            }
+            else
+            {
+                var iv_selected_member_item_member = holder.itemView.findViewById<ImageView>(R.id.iv_selected_member_item_member)
+                iv_selected_member_item_member.visibility = View.GONE
+            }
+            holder.itemView.setOnClickListener {
+
+                if (onClickListener != null) {
+                    // (Step 3: Pass the constants here according to the selection.)
+                    // START
+                    if (model.selected) {
+                        onClickListener!!.onClick(position, model, Constants.UN_SELECT)
+                    } else {
+                        onClickListener!!.onClick(position, model, Constants.SELECT)
+                    }
+                    // END
+                }
+            }
         }
     }
 
@@ -63,4 +94,14 @@ class MemberListItemsAdapter (private val context: Context,private var list: Arr
      * A ViewHolder describes an item view and metadata about its place within the RecyclerView.
      */
     class MyViewHolder(view: View) : RecyclerView.ViewHolder(view)
+
+    interface OnClickListener{
+        fun onClick(position : Int,user : User, action : String)
+    }
+    /**
+     * A function for OnClickListener where the Interface is the expected parameter..
+     */
+    fun setOnClickListener(onClickListener: OnClickListener) {
+        this.onClickListener = onClickListener
+    }
 }

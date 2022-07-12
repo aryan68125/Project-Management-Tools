@@ -14,14 +14,23 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projectmanagementtool.R
 import com.example.projectmanagementtool.activity.TaskListActivity
 import com.example.projectmanagementtool.models.Task
+import java.util.*
+import java.util.stream.Collectors
+import kotlin.collections.ArrayList
 
 open class TaskListItemsAdapter(private val context: Context, private var list : ArrayList<Task>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var dialogDeleteNote: androidx.appcompat.app.AlertDialog? = null
+
+    //global variable to store drag position
+    private var mPositionDraggedFrom = -1
+    private var mPositionDraggedTo = -1
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view = LayoutInflater.from(context).inflate(com.example.projectmanagementtool.R.layout.item_task, parent,false)
@@ -39,7 +48,7 @@ open class TaskListItemsAdapter(private val context: Context, private var list :
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val model = list[position]
-        if(holder is MyViewHolder){
+
             if (holder is MyViewHolder) {
 
                 if (position == list.size - 1) { //if there is no task in the list then show add task list button
@@ -164,8 +173,50 @@ open class TaskListItemsAdapter(private val context: Context, private var list :
                     }
                 )
                 /////
+
+                val dividerItemDecoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
+                rv_card_list.addItemDecoration(dividerItemDecoration)
+                val helper = ItemTouchHelper(
+                    object : ItemTouchHelper.SimpleCallback(
+                        ItemTouchHelper.UP or ItemTouchHelper.DOWN,0
+                    ){
+                        override fun onMove(
+                            recyclerView: RecyclerView,
+                            dragged: RecyclerView.ViewHolder,
+                            target: RecyclerView.ViewHolder
+                        ): Boolean {
+                            val draggedPosition = dragged.adapterPosition
+                            val targetPosition = target.adapterPosition
+
+                            if(mPositionDraggedFrom == -1)
+                            {
+                                mPositionDraggedFrom == draggedPosition
+                            }
+                            mPositionDraggedTo = targetPosition
+                            Collections.swap(list[position].cards, draggedPosition, targetPosition)
+                            adapter.notifyItemMoved(draggedPosition,targetPosition)
+                            return false
+                        }
+
+                        override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                            TODO("Not yet implemented")
+                        }
+
+                        override fun clearView(recyclerView: RecyclerView,viewHolder: RecyclerView.ViewHolder) {
+                            super.clearView(recyclerView, viewHolder)
+                            if(mPositionDraggedFrom !=-1 && mPositionDraggedTo!=-1 && mPositionDraggedFrom!=mPositionDraggedTo ){
+                                (context as TaskListActivity).updateCardsInTaskList(
+                                    position,
+                                    list[position].cards
+                                )
+                            }
+                            mPositionDraggedFrom =-1
+                            mPositionDraggedTo = -1
+                        }
+
+                    })
+                helper.attachToRecyclerView(rv_card_list)
             }
-        }
     }
 
     override fun getItemCount(): Int {

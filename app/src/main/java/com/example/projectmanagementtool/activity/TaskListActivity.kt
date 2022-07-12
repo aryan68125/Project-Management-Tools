@@ -21,6 +21,7 @@ import com.example.projectmanagementtool.adapters.TaskListItemsAdapter
 import com.example.projectmanagementtool.models.Board
 import com.example.projectmanagementtool.models.Card
 import com.example.projectmanagementtool.models.Task
+import com.example.projectmanagementtool.models.User
 import com.example.projectmanagementtool.utils.Constants
 
 class TaskListActivity : BaseActivity() {
@@ -30,6 +31,8 @@ class TaskListActivity : BaseActivity() {
     lateinit var Toolbar : Toolbar
 
     private lateinit var mBoardDetails : Board
+
+    public lateinit var mAssignedMemberDetailList : ArrayList<User>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -87,15 +90,10 @@ class TaskListActivity : BaseActivity() {
        catch (e: Exception) {
            // handler
        }
-
-        val addTaskList = Task(resources.getString(R.string.add_list))
-        board.taskList.add(addTaskList)
-        //get the recyclerVew
-        var rv_task_list = findViewById<RecyclerView>(R.id.rv_task_list)
-        rv_task_list.layoutManager = LinearLayoutManager(this@TaskListActivity, LinearLayoutManager.HORIZONTAL,false)
-        rv_task_list.setHasFixedSize(true)
-        val adapter = TaskListItemsAdapter(this@TaskListActivity,board.taskList)
-        rv_task_list.adapter = adapter
+        //show progress dialog
+        //may fail
+        showProgressDialog(resources.getString(R.string.please_wait))
+        FireStoreClass().getAssignedMembersListDetails(this, mBoardDetails.assignedTo)
     }
 
     //This function adds or updates the task list
@@ -123,8 +121,9 @@ class TaskListActivity : BaseActivity() {
     fun updateTaskList(position : Int, listName : String, model : Task){
         //get the task in the board
         val task = Task(listName, model.createdBy)
-        mBoardDetails.taskList[position] = task
+        //mBoardDetails.taskList[position] = task
         mBoardDetails.taskList.removeAt(mBoardDetails.taskList.size-1)
+        mBoardDetails.taskList[position] = task
         //show progress dialog
         showProgressDialog(resources.getString(R.string.please_wait))
 
@@ -178,7 +177,32 @@ class TaskListActivity : BaseActivity() {
         intent.putExtra(Constants.BOARD_DETAIL, mBoardDetails)
         intent.putExtra(Constants.TASK_LIST_ITEM_POSITION , taskListPosition)
         intent.putExtra(Constants.CARD_LIST_ITEM_POSITION , cardPosition)
+        intent.putExtra(Constants.BOARD_MEMBERS_LIST,mAssignedMemberDetailList)
         startActivityForResult(intent, CARD_DETAILS_REQUEST_CODE)
+    }
+
+    fun boardMembersDetailsList(list : ArrayList<User>){
+         mAssignedMemberDetailList = list
+        //may fail
+        hideProgressDialog()
+
+        val addTaskList = Task(resources.getString(R.string.add_list))
+        mBoardDetails.taskList.add(addTaskList)
+        //get the recyclerVew
+        var rv_task_list = findViewById<RecyclerView>(R.id.rv_task_list)
+        rv_task_list.layoutManager = LinearLayoutManager(this@TaskListActivity, LinearLayoutManager.HORIZONTAL,false)
+        rv_task_list.setHasFixedSize(true)
+        val adapter = TaskListItemsAdapter(this@TaskListActivity,mBoardDetails.taskList)
+        rv_task_list.adapter = adapter
+    }
+
+    //this function will help us arrange the cards
+    fun updateCardsInTaskList(taskListPosition : Int, cards : ArrayList<Card>){
+       mBoardDetails.taskList.removeAt(mBoardDetails.taskList.size-1)
+       mBoardDetails.taskList[taskListPosition].cards = cards
+        // can fail
+        showProgressDialog(resources.getString(R.string.please_wait))
+        FireStoreClass().addUpdateTaskList(this,mBoardDetails)
     }
     //.................END.....................
 
