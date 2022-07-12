@@ -35,7 +35,7 @@ object Constants{
     fun getFileExtension(activity : Activity, uri : Uri?) : String? {
         return MimeTypeMap.getSingleton().getExtensionFromMimeType(activity.contentResolver.getType(uri!!))
     }
-    //..........END.......................................
+    //..........END.........................................
 
     //constants related to the collection of boards
     const val BOARDS : String = "boards"
