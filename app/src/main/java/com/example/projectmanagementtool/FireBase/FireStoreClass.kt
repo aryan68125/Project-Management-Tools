@@ -114,21 +114,35 @@ class FireStoreClass {
     HAshmap here can have a String as a key and a value of type Any
     Any is nothing but an object in java . In kotlin we call objects Any when passing it in the hashMap
      */
-    fun updateUserProfileData(activity : MyProfileActivity, userHashMap : HashMap<String,Any>){
+    fun updateUserProfileData(activity : Activity, userHashMap : HashMap<String,Any>){
         //this function will pass in the user as a hashmap
         //get the firestore collection and update the data present in that collection
         mFireStore.collection(Constants.USERS).document(getCurrentUserID()).update(userHashMap).addOnSuccessListener {
             //here we are going to update the collection in the firebase database
             Log.i(activity.javaClass.simpleName, "Profile data is updated in the firebase collection")
             Toast.makeText(activity,"Profile updated!!",Toast.LENGTH_SHORT).show()
-
-            //call the profileUpdateSuccess() from MyProfileActivity
-            activity.profileUpdateSuccess()
+            when(activity){
+                is MainActivity ->{
+                    activity.tokenUpdateSuccess()
+                }
+                is MyProfileActivity->{
+                    //call the profileUpdateSuccess() from MyProfileActivity
+                    activity.profileUpdateSuccess()
+                }
+            }
         }.addOnFailureListener{
             e->
-            activity.hideProgressDialog()
-            Log.e(activity.javaClass.simpleName, "Error while updating")
-            Toast.makeText(activity,"Profile update Failed!",Toast.LENGTH_SHORT).show()
+            when(activity){
+                is MainActivity ->{
+                    activity.hideProgressDialog()
+                }
+                is MyProfileActivity->{
+                    //call the profileUpdateSuccess() from MyProfileActivity
+                    activity.hideProgressDialog()
+                    Log.e(activity.javaClass.simpleName, "Error while updating")
+                    Toast.makeText(activity,"Profile update Failed!",Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 

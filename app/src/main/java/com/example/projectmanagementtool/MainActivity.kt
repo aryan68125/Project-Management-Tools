@@ -1,7 +1,9 @@
 package com.example.projectmanagementtool
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -29,6 +31,10 @@ import com.example.projectmanagementtool.utils.Constants
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuth.getInstance
+import com.google.firebase.messaging.FirebaseMessaging
+
+import com.google.firebase.messaging.FirebaseMessagingService;
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -38,6 +44,9 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         const val MY_PROFILE_REQUEST_CODE : Int = 11
         const val CREATE_BOARD_REQUEST_CODE : Int = 12
     }
+
+    //create a variable for token that will be used to send and reciev notifications in the application
+    private lateinit var mSharedPreferences: SharedPreferences
 
     //a variable to store user name
     private lateinit var mUserName : String
@@ -76,6 +85,22 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         val navigationView = findViewById<NavigationView>(R.id.nav_view)
         navigationView.setNavigationItemSelectedListener(this);
 
+        //initializing the shared preferences here
+        //MODE_PRIVATE tells the application that the shared preferences should only be available inside the application
+        mSharedPreferences = this.getSharedPreferences(Constants.TASKMASTER_PREFERENCES, Context.MODE_PRIVATE)
+        val tokenUpdated = mSharedPreferences.getBoolean(Constants.FCM_TOKEN_UPDATED, false)
+        if(tokenUpdated){
+            showProgressDialog(resources.getString(R.string.please_wait))
+            //call the signInUser function in the FireStoreClass()
+            FireStoreClass().loadUserData(this,true)
+        }
+        else{
+            FirebaseMessaging.getInstance()
+                .token
+                .addOnSuccessListener(this@MainActivity){ instanceIdResult ->
+                    updateFCMToken(instanceIdResult)
+        }
+
         //call the signInUser function in the FireStoreClass()
         FireStoreClass().loadUserData(this,true)
 
@@ -97,12 +122,15 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             //this will update the UI when a new board is created in the recylerView of the main Activity
             startActivityForResult(intent3,CREATE_BOARD_REQUEST_CODE)
         }
+
     }
+}//on create function
 
     //get the user details from the firebase and update the profile picture in the navigation drawer
     //User here is the projectmanagement user and not the firebase user
     fun updateNavigationUserDetails(user : User, readBoardsList : Boolean)
     {
+        hideProgressDialog()
         //getting the user object and extracting username from it and storing it in the mUserName variable
         mUserName = user.name
 
@@ -197,6 +225,8 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             R.id.nav_sign_out ->{
                 //SignOut the current user from the fireBase account
                 FirebaseAuth.getInstance().signOut()
+
+                mSharedPreferences.edit().clear().apply()
 
                 //OpenUp the Intro Activity
                 val intent = Intent(this, IntroActivity::class.java)
@@ -306,4 +336,25 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         }
     }
     //...........END.............................
+
+    //FUNCTION RELATED TO APPLICATION TOKEN FOR THE NOTIFICATION FUNCTIONALITY IS HERE
+    fun tokenUpdateSuccess(){
+        hideProgressDialog()
+
+        val editor : SharedPreferences.Editor = mSharedPreferences.edit()
+        editor.putBoolean(Constants.FCM_TOKEN_UPDATED,true)
+        editor.apply()
+
+        showProgressDialog(resources.getString(R.string.please_wait))
+        FireStoreClass().loadUserData(this,true)
+    }
+
+    //this function will update the token in the database
+    fun updateFCMToken(token : String){
+        val userHashMap = HashMap<String,Any>()
+        userHashMap[Constants.FCM_TOKEN] = token
+        showProgressDialog(resources.getString(R.string.please_wait))
+        FireStoreClass().updateUserProfileData(this, userHashMap)
+    }
+    //........................END.....................................................
 }

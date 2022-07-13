@@ -69,6 +69,10 @@ dependencies {
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation 'com.google.firebase:firebase-storage-ktx'
 
+    //implementation for firebase cloud notification
+    implementation 'com.google.firebase:firebase-messaging:23.0.6'
+    implementation 'com.google.firebase:firebase-core:21.0.0'
+
 
     //Adding circular image view support
     implementation 'de.hdodenhof:circleimageview:3.1.0'
