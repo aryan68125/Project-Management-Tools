@@ -94,15 +94,13 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             //call the signInUser function in the FireStoreClass()
             FireStoreClass().loadUserData(this,true)
         }
-        else{
+        else {
             FirebaseMessaging.getInstance()
                 .token
-                .addOnSuccessListener(this@MainActivity){ instanceIdResult ->
+                .addOnSuccessListener(this@MainActivity) { instanceIdResult ->
                     updateFCMToken(instanceIdResult)
+                }
         }
-
-        //call the signInUser function in the FireStoreClass()
-        FireStoreClass().loadUserData(this,true)
 
         //setup the floating action button
         //open up the create board activity when the button is clicked
@@ -121,9 +119,8 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             intent3.putExtra(Constants.NAME,mUserName)
             //this will update the UI when a new board is created in the recylerView of the main Activity
             startActivityForResult(intent3,CREATE_BOARD_REQUEST_CODE)
+            Log.e("floating button","Button pressed")
         }
-
-    }
 }//on create function
 
     //get the user details from the firebase and update the profile picture in the navigation drawer
