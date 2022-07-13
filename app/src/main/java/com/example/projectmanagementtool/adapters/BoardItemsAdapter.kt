@@ -14,7 +14,7 @@ import com.example.projectmanagementtool.models.Board
 
 
 /*
-Recycler View needs an adapter so this Adapter class will handle the recycler View
+Recycler View needs an adapter so this Adapter class will handle the recycler View (complete)
 This BoardItemsAdapter inherits from recylerView Adapter class
 
 here our class BoardItemsAdapter gets a list of boards
